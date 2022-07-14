@@ -17,8 +17,8 @@ import jana60.model.*;
 @RequestMapping("/")
 public class MainController {
 
-	@GetMapping
-	public String countries(Model model) {
+	@GetMapping("/departments")
+	public String index(Model model) {
 		List<String> dep = List.of("Ingegneria", "Architettura", "Economia");
 		model.addAttribute("depar", dep);
 		return "index";
