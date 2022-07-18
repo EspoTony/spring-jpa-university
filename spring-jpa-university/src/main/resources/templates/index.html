@@ -1,22 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>University Departments</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<head th:insert="fragments :: metatags(name='index')">
+
 </head>
 
-<body class="container text-center w-75">
-	<h1>Departments</h1>
-	<ul>
-		<li th:each="d : ${deptList}" th:text="${d.toString()}"></li>
-	</ul>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-		crossorigin="anonymous"></script>
+<body>
+	<header th:insert="fragments :: navbar('')"></header>
+	<h1 class="text-center">Dipartimenti</h1>
+	<hr>
+	<div class="container" th:if="${!depName.empty}">
+		<table class="table table-striped border">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Direttore</th>
+					<th>Indirizzo</th>
+					<th>Telefono</th>
+					<th>Email</th>
+					<th>Sito</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="depa : ${depName}">
+					<td th:text="${depa.getName()}"></td>
+					<td th:text="${depa.getHead}"></td>
+					<td th:text="${depa.getAddress()}"></td>
+					<td th:text="${depa.getPhone()}"></td>
+					<td th:text="${depa.getEmail()}"></td>
+					<td th:text="${depa.getWebsite()}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<p th:if="${depName.empty}" class="text-center">Nessun dipartimento trovato</p>
 </body>
 
 </html>

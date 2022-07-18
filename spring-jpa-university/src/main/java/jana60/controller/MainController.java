@@ -7,23 +7,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import jana60.repository.*;
-import jana60.model.*;
+import jana60.model.Departments;
+import jana60.repository.DepartmentsRepository;
 
 @Controller
 @RequestMapping("/")
 public class MainController {
-
-	@GetMapping("/departments")
-	public String index(Model model) {
-		List<String> dep = List.of("Ingegneria", "Architettura", "Economia");
-		model.addAttribute("depar", dep);
-		return "index";
-	}
-
+	
 	@Autowired
 	private DepartmentsRepository repo;
+	
+	@GetMapping("/")
+	public String countBonus (Model m) {
+		List<Departments> depa = (List<Departments>) repo.findAll();
+		List<String> dep = List.of();
+		m.addAttribute("depName",depa);
+		return "Index";
+	}
+	
+	@GetMapping("/vecchio")
+	public String countries(Model model) {
+		List<String> dep = List.of("Ingegneria","Architettura","Economia");
+		model.addAttribute("depar", dep);
+		return "vecchio";
+	}
+
 }

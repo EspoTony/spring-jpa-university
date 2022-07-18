@@ -3,9 +3,9 @@ package jana60.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import jana60.model.Departments;
+import jana60.model.Degrees;
 
 @Repository
-public interface DepartmentsRepository extends CrudRepository<Departments, Integer> {
+public interface DegreeRepository extends CrudRepository<Degrees, Integer> {
 
 }
