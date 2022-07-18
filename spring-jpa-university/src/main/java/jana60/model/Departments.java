@@ -1,30 +1,38 @@
 package jana60.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "departments")
 public class Departments {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
+	
 	private String name;
 	private String address;
 	private String phone;
 	private String email;
 	private String website;
-
+	
 	@Column(name = "head_of_department")
 	private String head;
-
-	// getter/setter
+	
+	@OneToMany
+	@JoinColumn(name="department_id")
+	private List<Degrees> degrees;
+	
+	//getter/setter
 
 	public Integer getId() {
 		return id;
@@ -82,10 +90,19 @@ public class Departments {
 		this.head = head;
 	}
 
+	public List<Degrees> getDegrees() {
+		return degrees;
+	}
+
+	public void setDegrees(List<Degrees> degrees) {
+		this.degrees = degrees;
+	}
+
 	@Override
 	public String toString() {
 		return name + " diretto da " + head + " è sito in " + address + ". Telefono: " + phone + ", Email: " + email
-				+ ", Website: " + website + ".";
+				+ ", Website: " + website+".";
 	}
-
+	
+	
 }

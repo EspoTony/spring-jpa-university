@@ -1,39 +1,41 @@
 package jana60.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "degrees")
+@Table(name="degrees")
 public class Degrees {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-
+	@Column(name="id")
+	private Integer degreeId;
+	
 	private String name;
 	private String level;
 	private String address;
 	private String email;
 	private String website;
-
+	
 	@ManyToOne
-	@JoinColumn(name = "department_id")
+	@JoinColumn(name="department_id")
 	private Departments depa;
 
-	// getter-setter
+	
+	//getter-setter
 	public Integer getId() {
-		return id;
+		return degreeId;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.degreeId = id;
 	}
 
 	public String getName() {
@@ -84,4 +86,8 @@ public class Degrees {
 		this.depa = depa;
 	}
 
+	
+	
+	
+	
 }

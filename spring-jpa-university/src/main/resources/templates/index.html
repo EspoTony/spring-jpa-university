@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head th:insert="fragments :: metatags(name='index')">
-
+    
 </head>
-
 <body>
-	<header th:insert="fragments :: navbar('')"></header>
-	<h1 class="text-center">Dipartimenti</h1>
-	<hr>
+    <header th:insert="fragments :: navbar('')"></header>
+    <h1 class="text-center">Dipartimenti</h1>
+    <hr>
 	<div class="container" th:if="${!depName.empty}">
-		<table class="table table-striped border">
-			<thead>
-				<tr>
-					<th>Nome</th>
-					<th>Direttore</th>
-					<th>Indirizzo</th>
-					<th>Telefono</th>
-					<th>Email</th>
-					<th>Sito</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="depa : ${depName}">
-					<td th:text="${depa.getName()}"></td>
-					<td th:text="${depa.getHead}"></td>
-					<td th:text="${depa.getAddress()}"></td>
-					<td th:text="${depa.getPhone()}"></td>
-					<td th:text="${depa.getEmail()}"></td>
-					<td th:text="${depa.getWebsite()}"></td>
-				</tr>
-			</tbody>
-		</table>
+    	<table class="table table-striped border">
+        	<thead>
+            	<tr>
+                	<th>Nome</th>
+                	<th>Direttore</th>
+                	<th>Indirizzo</th>
+                	<th>Telefono</th>
+                	<th>Email</th>
+                	<th>Sito</th>
+            	</tr>
+        	</thead>
+        	<tbody>
+           		<tr th:each="depa : ${depName}">
+                	<td ><a th:text="${depa.name}" th:href="@{|/depid_${depa.id}|}"></a></td>
+                	<td th:text="${depa.getHead}"></td>
+                	<td th:text="${depa.getAddress()}"></td>
+                	<td th:text="${depa.getPhone()}"></td>
+                	<td th:text="${depa.getEmail()}"></td>
+                	<td th:text="${depa.getWebsite()}"></td>
+            	</tr>
+        	</tbody>
+    	</table>
 	</div>
-	<p th:if="${depName.empty}" class="text-center">Nessun dipartimento trovato</p>
+    <p th:if="${depName.empty}" class="text-center">Nessun dipartimento trovato</p>
 </body>
-
 </html>
