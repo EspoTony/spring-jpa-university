@@ -19,10 +19,13 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" th:classAppend="${page == ''} ? active : not-as" href="/">Dipartimenti</a>
+              <a class="nav-link" th:classAppend="${page == ''} ? active : not-as" href="/">Home(Dipartimenti)</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="degrees" th:classAppend="${page == 'degrees'}? active : not-a">Lauree</a>
+              <a class="nav-link" href="/degrees" th:classAppend="${page == 'degrees'}? active : not-a">Lauree</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/teachers" th:classAppend="${page == 'teachers'}? active : not-a">Professori</a>
             </li>
           </ul>
         </div>
